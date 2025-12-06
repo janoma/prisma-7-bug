@@ -14,12 +14,36 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  posts Post[]
+  id       Int       @id @default(autoincrement())
+  posts    Post[]
+  articles Article[]
 }
 
 model Post {
-  id        Int    @id @default(autoincrement())
-  author    User   @relation(fields: [authorId], references: [id])
-  authorId  Int
+  id          Int     @id @default(autoincrement())
+  isPublished Boolean
+  title       String
+  author      User    @relation(fields: [authorId], references: [id])
+  authorId    Int
+}
+
+model Article {
+  id       Int           @id @default(autoincrement())
+  status   ArticleStatus @default(draft)
+  title    String
+  author   User          @relation(fields: [authorId], references: [id])
+  authorId Int
+  tags     Tag[]
+}
+
+model Tag {
+  id      Int       @id @default(autoincrement())
+  label   String
+  slug    String    @unique
+  article Article[]
+}
+
+enum ArticleStatus {
+  published
+  draft
 }

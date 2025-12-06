@@ -1,11 +1,20 @@
 import { prisma } from "./prisma";
 
 async function helloBug() {
-  const users = await prisma.user.findMany({
-    include: { posts: true },
-    where: { id: 1 } // ok
-    // where: { id: { in: [1]}} // error
+  const data = await prisma.article.findMany({
+    where: {
+      status: "published",
+    },
+    select: {
+      title: true,
+      tags: {
+        select: {
+          label: true,
+          id: true,
+          slug: true,
+        },
+      },
+    },
   });
-
-  const totalPosts = users.map((user) => user.posts.length);
+  const tagsCount = data.map((article) => article.tags.length);
 }
