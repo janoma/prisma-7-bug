@@ -3,8 +3,7 @@
 ## Steps to reproduce
 
 1. Install dependencies with `pnpm install`
-2. Open `index.ts` and observe no errors
-3. Comment the line with the initial `where` clause and uncomment the other one
+2. Open `index.ts` and observe
 
 ### Expected behavior
 
@@ -12,11 +11,13 @@ No type errors.
 
 ### Actual behavior
 
-`posts` in `user.posts` gets the following type error:
+`tags` in `article.tags` gets the following type error:
 
 ```sh
-Property 'posts' does not exist on type '{ id: number; }'.ts(2339)
+Property 'tags' does not exist on type '{ id: number; status: ArticleStatus; title: string; authorId: number; }'.ts(2339)
 ```
+
+Additionally, `article.id` should *not* be available on the last line (because it is not selected in the query), but it is.
 
 ## "Fixes"
 
