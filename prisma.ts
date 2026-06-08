@@ -1,6 +1,5 @@
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { env } from "prisma/config";
-import "server-only";
 
 import { PrismaClient } from "./prisma/generated/prisma/client";
 
