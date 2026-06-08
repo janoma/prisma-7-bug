@@ -3,7 +3,8 @@
 ## Steps to reproduce
 
 1. Install dependencies with `pnpm install`
-2. Open `index.ts` and observe
+2. Run `pnpm typecheck`, observer the type error
+3. Remove the `where` clause in `index.ts`, run `pnpm typecheck`, observe no type error
 
 ### Expected behavior
 
